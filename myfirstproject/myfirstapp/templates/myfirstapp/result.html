@@ -1,0 +1,11 @@
+{% extends 'myfirstapp/layout.html' %}
+
+{% block title %}
+    Password Result
+{% endblock %}
+
+{% block content %}
+    <h1>Password Result</h1>
+    <p>The random password is: {{ result }}</p>
+    <p><a href="/">Generate Another Password</a></p>
+{% endblock %}
