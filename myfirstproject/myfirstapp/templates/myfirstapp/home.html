@@ -5,15 +5,13 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="password-generator">
-    
     <h1>Password Generator (made by @cheesy)</h1>
-    <form action="{% url 'generate_password' %}" method="POST">
+    <form action="{% url 'generate_password' %}" method="POST" id="passwordForm">
         {% csrf_token %}
         <div class="form-group">
             <label for="passlength">Enter password length:</label>
-            <input type="number" id="passlength" name="passlength">
+            <input type="number" id="passlength" name="passlength" required>
         </div>
         <div class="form-group">
             <label>Choose character set for password:</label><br>
@@ -27,7 +25,16 @@
         <div class="form-group">
             <input type="submit" value="Generate Password" class="btn btn-primary">
         </div>
-        
     </form>
 </div>
-    {% endblock %}
+
+<script>
+    document.getElementById('passwordForm').addEventListener('submit', function(event) {
+        var checkboxes = document.querySelectorAll('input[name="choice"]:checked');
+        if (checkboxes.length === 0) {
+            alert("Please select at least one character set.");
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+</script>
+{% endblock %}

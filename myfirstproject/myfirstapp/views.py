@@ -9,8 +9,7 @@ def home(request):
 def generate_password(request):
     if request.method == 'POST':
         passlength = int(request.POST['passlength'])
-        choice = int(request.POST['choice'])
-        
+        choice = int(request.POST['choice'])  
         characterList = ""
         if choice == 1:
             characterList += string.digits
