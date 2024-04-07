@@ -6,6 +6,32 @@
 
 {% block content %}
     <h1>Password Result</h1>
-    <p>The random password is: {{ result }}</p>
-    <p><a href="/">Generate Another Password</a></p>
+    <p id="password" class="password">The random password is: {{ result }}</p>
+    <br>
+    <button class="copy-pass">Copy Password</button>
+    <p><a href="/" class="generate-link">Generate Another Password</a></p>
+    
+    <script>
+        function copyPassword() {
+            // Select the text inside the password paragraph
+            var passwordText = document.getElementById("password");
+            var selection = window.getSelection();
+            var range = document.createRange();
+            range.selectNodeContents(passwordText);
+            selection.removeAllRanges();
+            selection.addRange(range);
+    
+            // Copy the selected text to the clipboard
+            document.execCommand("copy");
+    
+            // Deselect the text
+            selection.removeAllRanges();
+    
+            // Optionally, provide some visual feedback that the password has been copied
+            alert("Password copied to clipboard!");
+        }
+    
+        // Attach the copyPassword function to the button's click event
+        document.querySelector("button").addEventListener("click", copyPassword);
+    </script>
 {% endblock %}
