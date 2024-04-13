@@ -9,14 +9,16 @@ def home(request):
 def generate_password(request):
     if request.method == 'POST':
         passlength = int(request.POST['passlength'])
-        choice = int(request.POST['choice'])  
+        choices = request.POST.getlist('choice')  # Use getlist to retrieve multiple values
         characterList = ""
-        if choice == 1:
-            characterList += string.digits
-        elif choice == 2:
-            characterList += string.ascii_letters
-        elif choice == 3:
-            characterList += string.punctuation
+        
+        for choice in choices:
+            if choice == '1':
+                characterList += string.digits
+            elif choice == '2':
+                characterList += string.ascii_letters
+            elif choice == '3':
+                characterList += string.punctuation
         
         password = []
         for i in range(passlength):
@@ -32,3 +34,4 @@ def generate_password(request):
             result = "".join(password)
 
         return render(request, 'myfirstapp/result.html', {'result': result})
+
