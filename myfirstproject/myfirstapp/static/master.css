@@ -6,24 +6,58 @@
   }
 }
 
-body {
-  background-color: burlywood;
-  font-family: Arial, Helvetica, sans-serif;
+html {
+  --r: 56px; /* control the size */
+  --c1: #3FB8AF /*color 1*/ 99%,#0000 101%;
+  --c2: #FF9E9D /*color 2*/ 99%,#0000 101%;
+  
+  --s:calc(var(--r)*.866);  /* .866 = cos(30deg) */
+  --g0:radial-gradient(var(--r),var(--c1));
+  --g1:radial-gradient(var(--r),var(--c2));
+  --f:radial-gradient(var(--r) at calc(100% + var(--s)) 50%,var(--c1));
+  --p:radial-gradient(var(--r) at 100% 50%,var(--c2));
+  background:
+    var(--f) 0 calc(-5*var(--r)/2),
+    var(--f) calc(-2*var(--s)) calc(var(--r)/2),
+    var(--p) 0 calc(-2*var(--r)),
+    var(--g0) var(--s) calc(-5*var(--r)/2),
+    var(--g1) var(--s) calc( 5*var(--r)/2),
+    radial-gradient(var(--r) at 100% 100%,var(--c1)) 0 calc(-1*var(--r)),   
+    radial-gradient(var(--r) at 0%   50% ,var(--c1)) 0 calc(-4*var(--r)),
+    var(--g1) calc(-1*var(--s)) calc(-7*var(--r)/2),
+    var(--g0) calc(-1*var(--s)) calc(-5*var(--r)/2),
+    var(--p) calc(-2*var(--s)) var(--r),
+    var(--g0) calc(-1*var(--s)) calc(var(--r)/ 2),
+    var(--g1) calc(-1*var(--s)) calc(var(--r)/-2),
+    var(--g0) 0 calc(-1*var(--r)),
+    var(--g1) var(--s) calc(var(--r)/-2),
+    var(--g0) var(--s) calc(var(--r)/ 2) 
+    #FF9E9D; /*color 2 again here (yes I got lazy defining a variable ) */
+  background-size: calc(4*var(--s)) calc(6*var(--r));
 }
+
 
 .password-generator {
   max-width: 90%; /* Adjusted width for mobile */
-  margin: 0 auto;
   padding: 20px;
-  background-color: bisque;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  background-color: lightpink;
   text-align: center;
+  font-size: 1.5em;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Set the height of the container to viewport height */
+}
+
+
+
+
 
 .form-group {
   margin-bottom: 15px;
-  text-align: center;
   font-size: 20px; /* Reduced font size for mobile */
 }
 
@@ -62,16 +96,16 @@ input[type="number"] {
 }
 
 .password {
-  color: #333;
+  color: red;
   margin-bottom: 20px;
   max-width: 80%;
   margin: 0 auto;
   padding: 20px;
-  background-color: bisque;
-  border: 1px solid #ddd;
   border-radius: 5px;
+  border-style: solid;
   text-align: center;
   font-size: 1.5em;
+  
 }
 
 .generate-link,
